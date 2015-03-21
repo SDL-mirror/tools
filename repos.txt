@@ -1,0 +1,1 @@
+SDL SDL_image SDL_mixer SDL_net SDL_rtf SDL_ttf
