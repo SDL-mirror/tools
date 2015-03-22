@@ -1,7 +1,10 @@
 #!/bin/bash
 
-for repo in `cat $(dirname $0)/repos.txt`; do
-    cd $repo
+source $(dirname $0)/common.sh
+
+function body()
+{
+    check cd $repo
     
     branches=`hg branches | sed "s/ \+/ /g" | tr " " "=" | tr "\n" " "`
     
@@ -13,9 +16,11 @@ for repo in `cat $(dirname $0)/repos.txt`; do
             name=master
         fi
         
-        hg update -r $rev
-        hg bookmark -f $name
+        check hg update -r $rev
+        check hg bookmark -f $name
     done
     
-    cd ..
-done
+    check cd ..
+}
+
+loop

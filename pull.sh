@@ -1,7 +1,12 @@
 #!/bin/bash
 
-for repo in `cat $(dirname $0)/repos.txt`; do
-    cd $repo
-    hg pull
-    cd ..
-done
+source $(dirname $0)/common.sh
+
+function body()
+{
+    check cd $repo
+    check hg pull
+    check cd ..
+}
+
+loop

@@ -1,12 +1,15 @@
 #!/bin/bash
 
-for repo in `cat $(dirname $0)/repos.txt`; do
-    cd $repo
-    hg -v push ../$repo-git
-    cd ..
-    #TODO: push git repo
-    cd $repo-git
-    git push --all origin
-    git push --tags origin
-    cd ..
-done
+source $(dirname $0)/common.sh
+
+function body()
+{
+    check cd $repo
+    check -e hg -v push ../$repo-git
+    check cd ../$repo-git
+    check git push --all origin
+    check git push --tags origin
+    check cd ..
+}
+
+loop

@@ -3,11 +3,17 @@
 sdlbase="https://hg.libsdl.org/"
 gitbase="ssh://git@github.com/SDL-mirror/"
 
-for repo in `cat $(dirname $0)/repos.txt`; do
-    hg clone $sdlbase$repo
-    mkdir $repo-git
-    cd $repo-git
-    git init --bare
-    git remote add origin $gitbase$repo
-    cd ..
-done
+source $(dirname $0)/common.sh
+
+function body()
+{
+    check hg clone $sdlbase$repo
+    check echo -e "[extensions]\nhggit =" >> $repo/.hg/hgrc
+    check mkdir $repo-git
+    check cd $repo-git
+    check git init --bare
+    check git remote add origin $gitbase$repo
+    check cd ..
+}
+
+loop
