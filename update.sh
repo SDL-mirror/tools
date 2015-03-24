@@ -11,7 +11,6 @@ function check()
         echo "Update failed:"
         cat $log
         rm -f $log
-        
         exit 1
     fi
 }
@@ -19,5 +18,4 @@ function check()
 check $tools/pull.sh
 check $tools/sync-bookmarks.sh
 check $tools/push.sh
-
 rm -f $log
