@@ -22,7 +22,7 @@ function check()
     if [ $err != 0 ]; then
         echo -n "Exited with $err"
         
-        if [ "$ignore" != "true" ]; then
+        if [ "$ignore" != "true" -o $err != 1 ]; then
             echo
             exit 1
         else
