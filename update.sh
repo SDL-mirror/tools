@@ -33,4 +33,5 @@ fi
 check $tools/pull.sh
 check $tools/sync-bookmarks.sh
 check $tools/push.sh
+check python2 $tools/close-pulls.py
 rm -f $log
