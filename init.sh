@@ -7,6 +7,11 @@ source $(dirname $0)/common.sh
 
 function body()
 {
+    if [ -e $repo ]; then
+        echo "$repo seems to have been initialized already"
+        return
+    fi
+    
     check hg clone $sdlbase$repo
     check echo -e "[extensions]\nhggit =" >> $repo/.hg/hgrc
     check mkdir $repo-git
